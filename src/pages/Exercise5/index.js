@@ -9,9 +9,10 @@ export const Exercise5 = () => {
   const [value, setValue] = useState('N/A');
 
   async function onClick() {
-    const reservationDateAndTime = moment('2022-04-26T23:30:00.000Z').format(
-      'MM/D/YYYY h:mmA'
-    );
+    const moment = await import('moment');
+    const reservationDateAndTime = moment
+      .default('2022-04-26T23:30:00.000Z')
+      .format('MM/D/YYYY h:mmA');
     setValue(reservationDateAndTime);
     setDetailsVisible(!detailsVisible);
   }
