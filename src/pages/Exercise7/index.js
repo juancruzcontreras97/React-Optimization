@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Link } from 'react-router-dom';
-
+import { Loader } from './Loader';
 import './styles.css';
 
 const Details = React.lazy(() => {
   // Artificially making loadind the <Details> component take 1 second
   return new Promise((resolve, reject) => {
-    return setTimeout(() => resolve(import('./Details')), 1000);
+    return setTimeout(() => resolve(import('./Details')), 2000);
   });
 });
 
@@ -20,7 +20,9 @@ export const Exercise7 = () => {
           <img src={require('./logo.png')} alt='Restaurant logo' />
           <h1>Your reservation is confirmed.</h1>
         </div>
-        <Details />
+        <Suspense fallback={<Loader />}>
+          <Details />
+        </Suspense>
       </div>
     </div>
   );
